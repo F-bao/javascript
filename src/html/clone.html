@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clone</title>
+  </head>
+
+  <body>
+    <script>
+      const obj = {
+        num: 123,
+        address: null,
+        object: {
+          age: 24,
+          sex: 'male'
+        },
+        array: [
+          {
+            name: 'fisk'
+          }
+        ],
+        fn: function () {
+          console.log('hello world')
+        },
+        set: new Set([
+          'd',
+          'e',
+          {
+            majer: 'cs',
+            score: 98
+          }
+        ]),
+        map: new Map([
+          ['name', 'fi'],
+          ['age', 24],
+          [
+            'learn',
+            {
+              teacher: 'jack马'
+            }
+          ]
+        ])
+      }
+
+      function deepClone(obj = {}) {
+        // 非引用类型 和 特殊 function
+        if (typeof obj !== 'object' || obj === null || obj === undefined) {
+          return obj
+        }
+
+        // 对引用数据类型是否缓存判断
+        if (!deepClone.cacheMap) {
+          deepClone.cacheMap = new Map()
+        }
+
+        // 判断缓存
+        if (deepClone.cacheMap.has(obj)) {
+          return deepClone.cacheMap.get(obj)
+        }
+
+        // 引用数据类型
+        if (obj instanceof Map) {
+          // map对象
+          let newMpa = new WeakMap()
+          deepClone.cacheMap.set(obj, newMpa)
+
+          obj.forEach((item, key) => {
+            newMpa.set(key, deepClone(item))
+          })
+
+          // return 新的数据
+          return newMpa
+        } else if (obj instanceof Set) {
+          //  set对象
+          let newSet = new Set()
+          deepClone.cacheMap.set(obj, newSet)
+
+          obj.forEach((item) => {
+            newSet.add(deepClone(item))
+          })
+          return newSet
+        } else if (obj instanceof RegExp) {
+          let newReg = new RegExp(obj)
+          deepClone.cacheMap.set(obj, newReg)
+          return newReg
+        } else {
+          // 非Map 和 Set 对象  Array 和 Object
+          let tempObj = new obj.constructor()
+          // 缓存每一个已经处理过的对象
+          deepClone.cacheMap.set(obj, tempObj)
+          for (const key in obj) {
+            tempObj[key] = deepClone(obj[key])
+          }
+          return tempObj
+        }
+      }
+
+      let obj2 = {
+        toObj: obj
+      }
+      obj.toObj = obj2
+
+      let newObject = deepClone(obj)
+      console.log('newObjetc', newObject)
+    </script>
+  </body>
+</html>

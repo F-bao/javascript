@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>节流</title>
+  </head>
+
+  <body>
+    <button id="btn">节流</button>
+    <script>
+      const throttle = function (callback, wait) {
+        let timer
+
+        return function () {
+          if (!timer) {
+            timer = setTimeout(() => {
+              callback()
+              timer = null
+            }, wait)
+          }
+        }
+      }
+
+      fun = function () {
+        let num = Math.random(10)
+        console.log(num)
+      }
+      document.getElementById('btn').onclick = throttle(fun, 1000)
+    </script>
+  </body>
+</html>
