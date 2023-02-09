@@ -1,4 +1,4 @@
-//订阅起模型
+//订阅器模型
 let Dep = {
   clientList: [],
 
