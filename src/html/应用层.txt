@@ -1,0 +1,22 @@
+1、$nextTick()
+2、dom更新之后的延迟回调
+
+单页与多页
+（spa）：只有一个主页面
+一开始就要加载
+页面跳转=》刷新局部资源
+场景=》pc端
+优点 a.体验好 快 b.改动内容不用加载整个页面 c.前后端分离 d.效果可以很炫酷
+缺点：不利于seo b.初次加载比较慢 c.页面复杂度比较高
+
+多页
+页面跳转整页刷新
+
+v-if 与 v-for
+vue2中v-for优先级 > v-if
+
+vue-router与location.herf
+location.herf 简单方便，刷新页面 跳外链页面
+vue-router 实现了按需加载 减少了dom消耗  跳内部页面
+vue-router 底层封装了 js 原生 history
+
