@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //this 指向当前代码执行上下文
+  //顶层作用域window
+  let obj = {
+    fun: function (a, b) {
+      console.log('参数', a, b)
+      console.log(this)
+    },
+    func: (a, b) => {
+      console.log('参数', a, b)
+      console.log(this)
+    }
+  }
+  // obj.fun()
+  // obj.func()
+
+  //改变this指向call apply bind
+
+  //apply 改变this指向 并立即执行函数 参数逗号分隔
+  //call 改变this指向 并立即执行函数  参数是一个数组
+  //bind 改变this指向 改变完不会立即执行 参数逗号分隔
+  obj.fun.apply({a: 123}, [1, 2])
+  obj.func.call({a: 345}, 1, 2)
+</script>
+</body>
+</html>
