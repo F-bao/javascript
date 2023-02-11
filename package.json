@@ -1,0 +1,26 @@
+{
+  "name": "ls",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "run": "npm install",
+    "test": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/F-bao/javascript.git"
+  },
+  "keywords": [
+    "BAOjie0920"
+  ],
+  "author": "baojie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/F-bao/javascript/issues"
+  },
+  "homepage": "https://github.com/F-bao/javascript#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}
