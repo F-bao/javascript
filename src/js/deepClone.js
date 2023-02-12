@@ -7,7 +7,8 @@ function deepClone(obj) {
   let targetObj = obj instanceof Array ? [] : {}
 
   for (const key in obj) {
-    if (obj.hasOwnProperty(key)) {
+    if (!obj.hasOwnProperty(key)) {
+    } else {
       const element = obj[key]
       if (element instanceof Array || element instanceof Object) {
         targetObj[key] = deepClone(element)
@@ -15,9 +16,9 @@ function deepClone(obj) {
         targetObj[key] = element
       }
     }
-    return targetObj
-  }
 
+  }
+  return targetObj
 }
 
 let obj = {
