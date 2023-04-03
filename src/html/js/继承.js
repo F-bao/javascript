@@ -23,7 +23,6 @@
 // child1.info.gender = '男'
 // child1.getInfo()
 
-
 //2、借用构造函数继承
 //在子类构造函数内部调用父类构造函数 使用apply或者call 将父类构造函数绑定在子对象上
 //优点：解决了原型链继承不能想父类传参的问题和父类原型共享的问题
@@ -48,11 +47,9 @@
 // let children2 = new Child('女')
 // console.log(children2.info)
 
-
 //3、组合式继承将原型链 和 构造函数 组合到一起 使用原型链对属性和方法的继承
 //而又通过借用构造函数来实现对实例属性的继承 即通过在原型上定义的方法实现函数复用
 //又保证来每个实例都有自己的属性
-
 
 /**
  * 优点：解决了原型链继承和构造函数继承造成的影响
@@ -86,36 +83,35 @@
 // children.getInfo()
 // console.log(children.info)
 
-
 //4、es6 Class实现继承
 //class通过extends关键字 实现继承 其实质是先创造出父类的this对象
 //然后用子类的构造函数修改this
 //在子类中 必须调用super关键字 且只有调用了super时候才能使用this
 //因为子类的this对象是继承父类的this对象 然后对其进行加工
 //而super() 方法表示父类的构造函数 用来新建父类的this对象
-  //优点：语法简单 易懂 操作方便
-  //缺点：并不是所有的浏览器都支持class关键字
+//优点：语法简单 易懂 操作方便
+//缺点：并不是所有的浏览器都支持class关键字
 
 class Animal {
   constructor(kind) {
-    this.kind = kind
+    this.kind = kind;
   }
 
   getKind() {
-    return this.kind
+    return this.kind;
   }
 }
 
 class Cat extends Animal {
   constructor(name) {
-    super('cat');
-    this.name = name
+    super("cat");
+    this.name = name;
   }
 
   getCatInfo() {
-    console.log(this.name + ":", super.getKind())
+    console.log(this.name + ":", super.getKind());
   }
 }
 
-const cat = new Cat('biubiubiu')
-cat.getCatInfo()
+const cat = new Cat("biubiubiu");
+cat.getCatInfo();

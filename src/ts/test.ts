@@ -1,6 +1,6 @@
 const a: number = 100;
 
-const fun = (): [] => {
+let fun = (): [] => {
   return [];
 };
 function func(): [] {
