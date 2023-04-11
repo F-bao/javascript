@@ -96,7 +96,6 @@ class Animal {
   constructor(kind) {
     this.kind = kind;
   }
-
   getKind() {
     return this.kind;
   }

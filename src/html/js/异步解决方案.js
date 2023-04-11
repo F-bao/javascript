@@ -21,18 +21,19 @@
 //   console.log('res===>', res)
 // })
 
-
 //promise
 
 function promiseFun() {
   return new Promise((resolve, reject) => {
     // resolve('success')
-    reject('fail')
-  })
+    reject("fail");
+  });
 }
 
-promiseFun().then(res => {
-  console.log('res===>', res)
-}).catch(reason => {
-  console.log(reason)
-})
+promiseFun()
+  .then((res) => {
+    console.log("res===>", res);
+  })
+  .catch((reason) => {
+    console.log(reason);
+  });
