@@ -31,9 +31,9 @@ function promiseFun() {
 }
 
 promiseFun()
-  .then((res) => {
+  .then(res => {
     console.log("res===>", res);
   })
-  .catch((reason) => {
+  .catch(reason => {
     console.log(reason);
   });

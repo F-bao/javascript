@@ -4,7 +4,7 @@ import axios from "axios";
 //创建实例
 const request = axios.create({
   baseURL: "",
-  timeout: 3000
+  timeout: 3000,
 });
 
 //拦截器

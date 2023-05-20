@@ -1,69 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>双向绑定</title>
-  </head>
 
-  <body>
-    <div>
-      <input type="text" />
-      <h1></h1>
-      <button>按钮</button>
-    </div>
-    <script>
-      // vue2 响应式数据
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>双向绑定</title>
+</head>
 
-      // const input = document.getElementsByTagName("input")[0];
-      // const h1 = document.getElementsByTagName("h1")[0];
-      const btn = document.getElementsByTagName('button')[0];
-      // let data = {
-      //   text: "",
-      // };
+<body>
+  <div>
+    <input type="text" />
+    <h1></h1>
+    <button>按钮</button>
+  </div>
+  <script>
+    // vue2 响应式数据
 
-      // input.addEventListener("input", function (e) {
-      //   data.text = e.target.value;
-      // });
+    // const input = document.getElementsByTagName("input")[0];
+    // const h1 = document.getElementsByTagName("h1")[0];
+    const btn = document.getElementsByTagName('button')[0];
+    // let data = {
+    //   text: "",
+    // };
 
-      // btn.onclick = function () {
-      //   data.text = "你好";
-      // };
+    // input.addEventListener("input", function (e) {
+    //   data.text = e.target.value;
+    // });
 
-      // Object.defineProperty(data, "text", {
-      //   get: function () {
-      //     return data["text"];
-      //   },
-      //   set: function (nweValue) {
-      //     h1.innerText = nweValue;
-      //     input.value = nweValue;
-      //   },
-      // });
+    // btn.onclick = function () {
+    //   data.text = "你好";
+    // };
 
-      // vue3响应式数据;
+    // Object.defineProperty(data, "text", {
+    //   get: function () {
+    //     return data["text"];
+    //   },
+    //   set: function (nweValue) {
+    //     h1.innerText = nweValue;
+    //     input.value = nweValue;
+    //   },
+    // });
 
-      const data = {text: ''};
-      function effect() {
-        document.body.innerText = data.text;
-      }
+    // vue3响应式数据;
 
-      // data.text = '你好'
+    const data = { text: '' };
+    function effect() {
+      document.body.innerText = data.text;
+    }
 
-      const proxy = new Proxy(data, {
-        get(target, key) {
-          return target[key];
-        },
-        set(target, key, nweValue) {
-          target[key] = nweValue;
-          effect();
-          return true;
-        },
-      });
+    // data.text = '你好'
 
-      btn.onclick = function () {
-        proxy.text = '你好';
-      };
-    </script>
-  </body>
+    const proxy = new Proxy(data, {
+      get(target, key) {
+        return target[key];
+      },
+      set(target, key, nweValue) {
+        target[key] = nweValue;
+        effect();
+        return true;
+      },
+    });
+
+    btn.onclick = function () {
+      proxy.text = '你好';
+    };
+  </script>
+</body>
+
 </html>
