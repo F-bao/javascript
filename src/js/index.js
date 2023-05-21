@@ -21,7 +21,7 @@ let Dep = {
     for (let i = 0, fn; (fn = fns[i++]); ) {
       fn.apply(this, arguments);
     }
-  }
+  },
 };
 
 //用来做数据劫持
@@ -40,7 +40,7 @@ let hiJack = ({ data, tag, dataKey, selector }) => {
       value = val;
       //发布
       Dep.trigger(tag, val);
-    }
+    },
   });
   //订阅
   Dep.listen(tag, function (text) {

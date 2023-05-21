@@ -3,7 +3,7 @@ import axios from "axios";
 
 //创建实例
 const request = axios.create({
-  baseURL: "",
+  baseURL: "http://localhost:3000",
   timeout: 3000,
 });
 

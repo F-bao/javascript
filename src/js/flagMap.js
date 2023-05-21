@@ -15,6 +15,6 @@ const obj = {
   name: "hello",
   cast: "123",
   majer: {
-    openid: "r"
-  }
+    openid: "r",
+  },
 };
