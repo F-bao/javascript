@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+
+<body>
+  <script>
+    //构造函数  普通函数 约定构造函数首字母大写
+    function newFun(Fun, args) {
+      let obj = {}
+      obj.__proto__ = Fun.prototype
+      const result = Fun.apply(obj, args)
+      return result instanceof Object ? result : obj
+    }
+
+    /**
+     * 1.第一步 创建一个对象 指向构造函数this
+     * 2.this的_proto_指向构造函数的prototype
+     * 3.执行构造函数
+     * 4.返回：
+     * 如果没有return 或者 return 的是简单数据类型  忽略
+     * 如果return 的是复杂数据类型  则返回的是 当前的值
+     */
+
+  </script>
+</body>
+
+</html>

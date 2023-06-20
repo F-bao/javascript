@@ -1,51 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>变量提升</title>
-  </head>
 
-  <body>
-    <script>
-      // console.log(num);
-      // fun = function () {
-      //   console.log(num);
-      //   var num;
-      //   num = 123;
-      //   console.log(num);
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>变量提升</title>
+</head>
 
-      //   a = 10;
-      //   let a = 1;
-      //   console.log('a', a);
-      // };
-      // fun();
+<body>
+  <script>
+    // console.log(num);
+    // fun = function () {
+    //   console.log(num);
+    //   var num;
+    //   num = 123;
+    //   console.log(num);
 
-      function fn(timer) {
-        setTimeout(() => {}, timer * 1000)
-      }
+    //   a = 10;
+    //   let a = 1;
+    //   console.log('a', a);
+    // };
+    // fun();
 
-      const p = new Promise(
-        (resolve) => {
-          for (var i = 0; i <= 3; i++) {
-            setTimeout(() => {
-              console.log(i)
-            }, i * 1000)
-          }
-        },
-        (reject) => {
-          console.log(i)
+    function fn(timer) {
+      setTimeout(() => { }, timer * 1000)
+    }
+
+    const p = new Promise(
+      (resolve) => {
+        for (var i = 0; i <= 3; i++) {
+          setTimeout(() => {
+            console.log(i)
+          }, i * 1000)
         }
-      )
-
-      p.then((res) => {
+      },
+      (reject) => {
         console.log(i)
-      }).then((res) => {})
+      }
+    )
 
-      const obj = new Promise((reject) => {
-        console.log(111)
-      })
-    </script>
-  </body>
+    p.then((res) => {
+      console.log(i)
+    }).then((res) => { })
+
+    const obj = new Promise((reject) => {
+      console.log(111)
+    })
+  </script>
+</body>
+
 </html>
