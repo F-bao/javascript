@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>并发请求</title>
+	</head>
+
+	<body>
+		<script>
+			async function asyncPool(poolLimit, array, iteratorFn) {
+				// 存储所有异步任务
+				const ret = [];
+				// 存储正在执行的异步任务
+				const executing = [];
+				for (const item of array) {
+					// 利用iteratorFn函数创建异步任务
+					const p = Promise.resolve().then(() => iteratorFn(item, array));
+					// 保存新的异步任务
+					ret.push(p);
+					// 当 poolLimit 小于或等于总任务个数时，进行并发控制
+					if (poolLimit <= array.length) {
+						// 当任务完成后，从执行的任务数组总去除已完成的任务
+						const e = p.then(() => executing.splice(executing.indexOf(e), 1));
+						//保证正在执行的异步任务
+						executing.push(e);
+						if (executing.length >= poolLimit) {
+							// trick
+							await Promise.race(
+								executing.map(item => {
+									return item.catch(err => {
+										return err;
+									});
+								})
+							);
+						}
+					}
+				}
+				// trick 对err进行处理
+				return Promise.all(
+					ret.map(item => {
+						return item.catch(err => {
+							return err;
+						});
+					})
+				);
+			}
+
+			const timeout = i =>
+				new Promise((resolve, reject) => {
+					setTimeout(() => {
+						console.log(i);
+						if (i === 2000) {
+							reject({ error: i });
+						} else {
+							resolve({ success: i });
+						}
+					}, i);
+				});
+
+			asyncPool(2, [1000, 1000, 1000, 1000, 1000, 2000], timeout).then(res => {
+				console.log("res", res);
+			});
+		</script>
+	</body>
+</html>
